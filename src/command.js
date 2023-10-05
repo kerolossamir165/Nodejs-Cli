@@ -21,13 +21,12 @@ yargs(hideBin(process.argv))
       });
     },
     async (argv) => {
-      const tags = argv.tags ? argv.tags.split(",") : [];
-      const note = await newNote(argv.content, tags);
-      console.log("Note Added ", note);
+      const description = argv.description ? argv.description : "";
+      const note = await newNote(argv.content, description);
     }
   )
-  .option("tags", {
-    alias: "t",
+  .option("description", {
+    alias: "d",
     type: "string",
     description: "tags to add to the note",
   })
@@ -98,6 +97,6 @@ yargs(hideBin(process.argv))
       start(notes, argv.port);
     }
   )
- 
+
   .demandCommand(1)
   .parse();

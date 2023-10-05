@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notes</title>
-    <style>
-      .notes {
-      }
-    </style>
+
+    <link rel="stylesheet" href="public/style.css" />
+    <script src="public/app.js"></script>
   </head>
   <body>
-    <div class="notes">{{notes}}</div>
+    <div class="heading">
+      <h1>This is my Notes</h1>
+      <button class="add">Add</button>
+    </div>
+    <div class="container">{{notes}}</div>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,201 @@
+/* relevant portion */
+.container ul {
+  --separator: ",";
+  --connector: "and ";
+  font-size: 15px;
+  padding: 0;
+  margin: 0 2em;
+  display: inline;
+  list-style-type: none;
+}
+
+.container li {
+  display: inline;
+}
+
+.container li {
+  margin: 0.5em 0;
+}
+
+.container li::after {
+  content: none;
+}
+
+.container li::after {
+  color: inherit;
+  font-weight: 500;
+}
+
+li::after {
+  content: var(--separator);
+  color: #ef5016;
+  transition: color ease 200ms;
+  font-weight: 700;
+}
+
+li:nth-last-of-type(2)::after {
+  content: var(--separator) " " var(--connector) " ";
+  color: #0058ff;
+}
+
+li:first-of-type:nth-last-of-type(2)::after {
+  content: " " var(--connector);
+  color: #178717;
+}
+
+li:last-of-type::after {
+  content: ".";
+  color: #0000ff;
+}
+
+/* no margin for item containers */
+ul {
+  margin: 0;
+  list-style-type: square;
+}
+
+li::marker {
+  color: var(--accent-alpha);
+}
+
+/* layout and decoration */
+:root {
+  --accent: #7a24f2;
+  --accent-alpha: #7a24f2bb;
+  --text: #000;
+  --text-secondary: #000000cc;
+  --container: #fff;
+  --section-color: #fff;
+}
+
+html,
+body {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  color: var(--text);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.28em;
+  font-weight: 500;
+  display: block;
+  background-image: radial-gradient(circle at 50%, #fff, #eee);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+body {
+  background-color: transparent;
+}
+
+main {
+  position: relative;
+  inset: 0;
+  max-width: 950px;
+  min-width: 480px;
+  margin: 3em 2em;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.heading .add {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 30px;
+  min-width: 120px;
+}
+.heading .add:hover {
+  background-color: #561ea5;
+}
+
+h1,
+h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: -0.3ch;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 1em;
+}
+
+h2::before {
+  content: "#";
+  color: var(--text-secondary);
+  font-size: 0.8em;
+}
+
+h2::before {
+  font-size: 1em;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  padding: 0 2em;
+  box-sizing: border-box;
+}
+
+.container section {
+  margin: 1.3em 0;
+}
+
+.container div {
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
