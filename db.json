@@ -1,16 +1,14 @@
 {
   "notes": [
     {
-      "tags": [],
-      "content": "first",
-      "id": 1693052779017
+      "description": "this is my first description",
+      "content": "First note ",
+      "id": 1696543900717
     },
     {
-      "tags": [
-        "first"
-      ],
-      "content": "kero",
-      "id": 1693052874564
+      "description": "this is my Second description",
+      "content": "Second note ",
+      "id": 1696543900717
     }
   ]
 }
