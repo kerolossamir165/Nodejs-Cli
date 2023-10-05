@@ -97,5 +97,6 @@ yargs(hideBin(process.argv))
       start(notes, argv.port);
     }
   )
+
   .demandCommand(1)
   .parse();
