@@ -1,4 +1,4 @@
-import { findNotes, getAllNotes } from "./notes.js";
+import { findNotes, getAllNotes, newNote } from "./notes.js";
 import interpolate from "./utils/intepolateHtml.js";
 import fs from "node:fs/promises";
 import { capitalize, formatNotes } from "./utils/helper.js";
@@ -97,6 +97,29 @@ handlers._note.get = function (data, callback) {
       callback(404);
     });
 };
+
+handlers._note.post = function (data, callback) {
+  let content =
+    typeof data.payload.content == "string" &&
+    data.payload.content.trim().length > 0
+      ? data.payload.content.trim()
+      : false;
+  let description =
+    typeof data.payload.description == "string" &&
+    data.payload.description.trim().length > 0
+      ? data.payload.description.trim()
+      : false;
+  if (content && description) {
+    newNote(content, description)
+      .then((data) => {
+        callback(200);
+      })
+      .catch((err) => {
+        callback(500, { Error: "Could not create the new note" });
+      });
+  }
+};
+
 handlers._note.delete = function (data, callback) {};
 
 export default handlers;

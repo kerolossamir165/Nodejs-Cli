@@ -3,6 +3,8 @@ import { StringDecoder } from "string_decoder";
 import handlers from "./handlers.js";
 import router from "./router.js";
 
+import { parseJsonToObject } from "./utils/helper.js";
+
 export default async function serverFun(req, res, notes) {
   let parsedUrl = url.parse(req.url, true);
   let path = parsedUrl.pathname;
@@ -21,7 +23,7 @@ export default async function serverFun(req, res, notes) {
     buffer += decoder.end();
     let data = {
       trimmedPath,
-      payload: buffer,
+      payload: parseJsonToObject(buffer),
       queryString,
       method,
       headers,
