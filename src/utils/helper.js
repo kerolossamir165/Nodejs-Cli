@@ -7,13 +7,15 @@ export const formatNotes = (notes) => {
     .map((note) => {
       return `
               
-            <section>
+            <section data-id=${note.id}>
             <h2>${capitalize(note.content)}</h2>
-            <div>
-                <ul>
-                <li>${note.description}</li>  
-                </ul>
+              <div>
+             
+                <p>${note.description}</p>  
+               
               </div>
+              <button class="delete">Delete</button>
+              <button class="edit">Edit</button>
           </section>
           `;
     })

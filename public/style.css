@@ -1,62 +1,4 @@
 /* relevant portion */
-.container ul {
-  --separator: ",";
-  --connector: "and ";
-  font-size: 15px;
-  padding: 0;
-  margin: 0 2em;
-  display: inline;
-  list-style-type: none;
-}
-
-.container li {
-  display: inline;
-}
-
-.container li {
-  margin: 0.5em 0;
-}
-
-.container li::after {
-  content: none;
-}
-
-.container li::after {
-  color: inherit;
-  font-weight: 500;
-}
-
-li::after {
-  content: var(--separator);
-  color: #ef5016;
-  transition: color ease 200ms;
-  font-weight: 700;
-}
-
-li:nth-last-of-type(2)::after {
-  content: var(--separator) " " var(--connector) " ";
-  color: #0058ff;
-}
-
-li:first-of-type:nth-last-of-type(2)::after {
-  content: " " var(--connector);
-  color: #178717;
-}
-
-li:last-of-type::after {
-  content: ".";
-  color: #0000ff;
-}
-
-/* no margin for item containers */
-ul {
-  margin: 0;
-  list-style-type: square;
-}
-
-li::marker {
-  color: var(--accent-alpha);
-}
 
 /* layout and decoration */
 :root {
@@ -155,11 +97,17 @@ h2::before {
 
 .container section {
   margin: 1.3em 0;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 15px;
 }
 
 .container div {
   font-size: 0.9em;
   line-height: 1.6;
+}
+.container p {
+  margin-left: 50px;
 }
 
 /* The Modal (background) */
@@ -220,7 +168,9 @@ textarea[name="description"] {
   box-sizing: border-box;
 }
 
-button[type="submit"] {
+button[type="submit"],
+.edit,
+.delete {
   width: 100%;
   background-color: var(--accent);
   color: white;
@@ -231,6 +181,13 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+.edit:hover,
+.delete:hover {
   background-color: #561ea5;
+}
+
+.edit,
+.delete {
+  width: 150px;
 }

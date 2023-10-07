@@ -1,4 +1,10 @@
-import { findNotes, getAllNotes, newNote } from "./notes.js";
+import {
+  findNotes,
+  getAllNotes,
+  newNote,
+  removeNote,
+  editNote,
+} from "./notes.js";
 import interpolate from "./utils/intepolateHtml.js";
 import fs from "node:fs/promises";
 import { capitalize, formatNotes } from "./utils/helper.js";
@@ -9,7 +15,6 @@ handlers.index = async (data, callback) => {
   try {
     // Do interpolation on the string
     let notes = await getAllNotes();
-
     let pathHtml = new URL("./template.html", import.meta.url);
     let temp = await fs.readFile(pathHtml, "utf8");
     let newHtml = interpolate(temp, { notes: formatNotes(notes) });
@@ -88,8 +93,7 @@ handlers.notFound = (data, callback) => {
 handlers._note = {};
 
 handlers._note.get = function (data, callback) {
-  // data.queryStringObject = JSON.parse(data.queryStringObject);
-  findNotes("first")
+  findNotes(data.queryString.id)
     .then((data) => {
       callback(200, data, "json");
     })
@@ -120,6 +124,45 @@ handlers._note.post = function (data, callback) {
   }
 };
 
-handlers._note.delete = function (data, callback) {};
+handlers._note.put = function (data, callback) {
+  let content =
+    typeof data.payload.content == "string" &&
+    data.payload.content.trim().length > 0
+      ? data.payload.content.trim()
+      : false;
+  let description =
+    typeof data.payload.description == "string" &&
+    data.payload.description.trim().length > 0
+      ? data.payload.description.trim()
+      : false;
+
+  if (content && description) {
+    editNote({
+      description,
+      content,
+      id: +data.payload.id,
+    })
+      .then((note) => {
+        callback(200);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(500, { Error: "Could not edit the note" });
+      });
+  }
+};
+
+handlers._note.delete = function (data, callback) {
+  let id = data.payload.id;
+  if (id) {
+    removeNote(id)
+      .then((el) => {
+        callback(200);
+      })
+      .catch((err) => {
+        callback(500, { Error: "Could not delete the specified user" });
+      });
+  }
+};
 
 export default handlers;
